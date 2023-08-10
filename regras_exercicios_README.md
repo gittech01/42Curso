@@ -38,7 +38,7 @@ cuja senha será "secret", e que terá todos os direitos para o banco de dados.
 
 Aqui está um exemplo de estrutura típica para o repositório de um aluno chamado krichard, para o dia d42, incluindo 2 exercícios:
 
-***
+```
 |-- krichard
 | |-- .
 | |-- ..
@@ -68,7 +68,7 @@ Aqui está um exemplo de estrutura típica para o repositório de um aluno chama
 | | |-- urls.py
 | | |-- views.py
 | |-- manage.py
-***
+```
 
 ### Exercício 00: SQL - Construção de Tabela
 - Diretório de entrega: ex00/
@@ -132,15 +132,15 @@ Crie um novo aplicativo Django chamado "ex03". Dentro dele, crie um modelo Djang
 Este aplicativo deve incluir visualizações acessíveis através das seguintes URLs:
 
 - 127.0.0.1:8000/ex03/populate: deve inserir no modelo deste aplicativo os seguintes dados:
-   ◦ episode_nb: 1 - title: The Phantom Menace - director: George Lucas - producer: Rick McCallum - release_date: 1999-05-19
-   ◦ episode_nb: 2 - title: Attack of the Clones - director: George Lucas - producer: Rick McCallum - release_date: 2002-05-16
-   ◦ episode_nb: 3 - title: Revenge of the Sith - director: George Lucas - producer: Rick McCallum - release_date: 2005-05-19
-   ◦ episode_nb: 4 - title: A New Hope - director: George Lucas - producer: Gary Kurtz, Rick McCallum - release_date: 1977-05-25
-   ◦ episode_nb: 5 - title: The Empire Strikes Back - director: Irvin Kershner - producer: Gary Kurtz, Rick McCallum - release_date: 1980-05-17
-   ◦ episode_nb: 6 - title: Return of the Jedi - director: Richard Marquand - producer: Howard G. Kazanjian, George Lucas, Rick McCallum - release_date: 1983-05-25
-   ◦ episode_nb: 7 - title: The Force Awakens - director: J. J. Abrams - producer: Kathleen Kennedy, J. J. Abrams, Bryan Burk - release_date: 2015-12-11
+   - episode_nb: 1 - title: The Phantom Menace - director: George Lucas - producer: Rick McCallum - release_date: 1999-05-19
+   - episode_nb: 2 - title: Attack of the Clones - director: George Lucas - producer: Rick McCallum - release_date: 2002-05-16
+   - episode_nb: 3 - title: Revenge of the Sith - director: George Lucas - producer: Rick McCallum - release_date: 2005-05-19
+   - episode_nb: 4 - title: A New Hope - director: George Lucas - producer: Gary Kurtz, Rick McCallum - release_date: 1977-05-25
+   - episode_nb: 5 - title: The Empire Strikes Back - director: Irvin Kershner - producer: Gary Kurtz, Rick McCallum - release_date: 1980-05-17
+   - episode_nb: 6 - title: Return of the Jedi - director: Richard Marquand - producer: Howard G. Kazanjian, George Lucas, Rick McCallum - release_date: 1983-05-25
+   - episode_nb: 7 - title: The Force Awakens - director: J. J. Abrams - producer: Kathleen Kennedy, J. J. Abrams, Bryan Burk - release_date: 2015-12-11
    Deve retornar uma página exibindo "OK" para cada inserção bem-sucedida. Caso contrário, deve exibir uma mensagem de erro indicando o problema.
 
-• 127.0.0.1:8000/ex03/display: deve exibir todos os dados incluídos na tabela "Movies" em uma tabela HTML, incluindo os campos vazios eventuais. Se não houver dados disponíveis ou ocorrer um erro, a página deve simplesmente exibir "Nenhum dado disponível".
+- 127.0.0.1:8000/ex03/display: deve exibir todos os dados incluídos na tabela "Movies" em uma tabela HTML, incluindo os campos vazios eventuais. Se não houver dados disponíveis ou ocorrer um erro, a página deve simplesmente exibir "Nenhum dado disponível".
 
 `Durante a avaliação, a migração será executada antes dos testes.`
