@@ -144,3 +144,65 @@ Este aplicativo deve incluir visualizações acessíveis através das seguintes 
 - 127.0.0.1:8000/ex03/display: deve exibir todos os dados incluídos na tabela "Movies" em uma tabela HTML, incluindo os campos vazios eventuais. Se não houver dados disponíveis ou ocorrer um erro, a página deve simplesmente exibir "Nenhum dado disponível".
 
 `Durante a avaliação, a migração será executada antes dos testes.`
+
+
+### Exercício 04: SQL - Remoção de Dados
+- Diretório de entrega: ex04/
+
+Crie um aplicativo chamado "ex04". Ele deve conter visualizações acessíveis através das seguintes URLs:
+
+- 127.0.0.1:8000/ex04/init: deve criar uma tabela com as mesmas especificações daquelas exigidas para o aplicativo ex00, exceto que será nomeada "ex04_movies". Deve retornar uma página exibindo "OK" para cada inserção bem-sucedida. Caso contrário, deve exibir uma mensagem de erro indicando o problema.
+
+- 127.0.0.1:8000/ex04/populate: deve inserir os dados descritos no exercício ex02 na tabela criada na visualização anterior. Esta visualização deve reinserir quaisquer dados deletados. Deve retornar uma página exibindo "OK" para cada inserção bem-sucedida. Caso contrário, deve exibir uma mensagem de erro indicando o problema.
+
+- 127.0.0.1:8000/ex04/display: deve exibir todos os dados incluídos na tabela "ex04_movies" em uma tabela HTML, incluindo os campos vazios eventuais. Se não houver dados disponíveis ou ocorrer um erro, a página deve simplesmente exibir "Nenhum dado disponível".
+
+- 127.0.0.1:8000/ex04/remove: deve exibir um formulário HTML contendo uma lista suspensa (drop-down) de títulos de filmes e um botão de envio (submit) chamado "remover". Os títulos dos filmes são aqueles contidos na tabela "ex04_movies".
+
+Quando o formulário é validado, o filme selecionado é excluído do banco de dados e o formulário é redisplayed com a lista atualizada contendo os filmes restantes. Se não houver dados disponíveis ou ocorrer um erro, a página deve simplesmente exibir "Nenhum dado disponível".
+
+
+### Exercício 05: ORM - Exclusão de Dados
+- Diretório de entrega: ex05/
+
+Crie um novo aplicativo Django chamado "ex05". Crie um modelo idêntico ao do exercício ex01 dentro dele.
+
+Este aplicativo deve incluir visualizações acessíveis através das seguintes URLs:
+
+- 127.0.0.1:8000/ex05/populate: deve inserir os dados descritos no exercício ex03 na aplicação criada. Esta visualização deve reinserir quaisquer dados excluídos. Deve retornar uma página exibindo "OK" para cada inserção bem-sucedida. Caso contrário, deve exibir uma mensagem de erro indicando o problema.
+
+- 127.0.0.1:8000/ex05/display: deve exibir todos os dados incluídos na tabela "Movies" em uma tabela HTML, incluindo os campos vazios eventuais. Se não houver dados disponíveis ou ocorrer um erro, a página deve simplesmente exibir "Nenhum dado disponível".
+
+- 127.0.0.1:8000/ex05/remove: deve exibir um formulário HTML contendo uma lista suspensa (drop-down) de títulos de filmes e um botão de envio (submit) chamado "remover". Os títulos dos filmes são aqueles contidos no modelo "Movies" deste aplicativo.
+
+Quando o formulário é validado, o filme selecionado é excluído do banco de dados e o formulário é redisplayed com a lista atualizada contendo os filmes restantes. Se não houver dados disponíveis ou ocorrer um erro, a página deve simplesmente exibir "Nenhum dado disponível".
+
+Durante a avaliação, a migração será executada antes dos testes.
+
+
+### Exercício 06: SQL - Atualização de Dados
+- Diretório de entrega: ex06/
+
+Crie um novo aplicativo Django chamado "ex06". Ele deve conter visualizações acessíveis através das seguintes URLs:
+
+- 127.0.0.1:8000/ex06/init: deve criar uma tabela com as mesmas especificações daquelas exigidas para o aplicativo ex00, exceto que será nomeada "ex06_movies" e incluirá os seguintes campos adicionais:
+   - created: um campo do tipo datetime (data e hora), que, quando criado, deve ser automaticamente definido para a data e hora atual.
+   - updated: um campo do tipo datetime (data e hora), que, quando criado, deve ser automaticamente definido para a data e hora atual e atualizado automaticamente a cada atualização graças ao gatilho a seguir:
+      ```sql
+      CREATE OR REPLACE FUNCTION update_changetimestamp_column()
+      RETURNS TRIGGER AS $$
+      BEGIN
+      NEW.updated = now();
+      NEW.created = OLD.created;
+      RETURN NEW;
+      END;
+      $$ language 'plpgsql';
+      CREATE TRIGGER update_films_changetimestamp BEFORE UPDATE
+      ON ex06_movies FOR EACH ROW EXECUTE PROCEDURE
+      update_changetimestamp_column();
+      ```
+- 127.0.0.1:8000/ex06/populate: deve popular a tabela criada na visualização anterior com os dados descritos no exercício ex02. Deve retornar uma página exibindo "OK" para cada inserção bem-sucedida. Caso contrário, deve exibir uma mensagem de erro indicando o problema.
+
+- 127.0.0.1:8000/ex06/display: deve exibir todos os dados incluídos na tabela "ex06_movies" em uma tabela HTML. Se não houver dados disponíveis ou ocorrer um erro, a página deve simplesmente exibir "Nenhum dado disponível".
+
+- 127.0.0.1:8000/ex06/update: deve gerenciar o envio e o recebimento de um formulário. Este último deve permitir escolher um filme em um menu suspenso (drop-down) contendo os filmes incluídos na tabela "ex06_movies" e escrever texto no segundo campo. Ao validar o formulário, a visualização deve substituir o campo "opening_crawl" do filme selecionado pelo texto digitado no formulário na tabela "ex06_movies". Se não houver dados disponíveis ou ocorrer um erro, a página deve simplesmente exibir "Nenhum dado disponível".
